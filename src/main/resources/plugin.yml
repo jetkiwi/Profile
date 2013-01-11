@@ -1,0 +1,58 @@
+name: Profile
+main: net.ja731j.profile.Profile
+authors: ['ja731j']
+version: maven-version-number
+commands:
+  profile:
+    description: Profile Commands
+    usage: |
+            /profile set <player> <message>
+            /profile view <player>
+            /profile remove <player>
+            /profile help
+permissions:
+    profile.*:
+        description: Gives access to all profile commands
+        children:
+            profile.set.*: true
+            profile.view: true
+            profile.remove: true
+    profile.op:
+        description: Default op access to commands
+        children:
+            profile.*: true
+        default: op
+    profile.user:
+        description: Default user access to commands
+        children:
+            profile.set.own: true
+            profile.view.*: true
+            profile.remove.own: true
+        default: not op
+    profile.set.*:
+        description: Allows you to set anyones profile
+        children:
+            profile.set.own: true
+            profile.set.others: true
+    profile.set.own:
+        description: Allows you to set your own profile
+    profile.set.others:
+        description: Allows you to set other peoples profile
+    profile.view.*:
+        description: Allows you to view all profiles
+        children:
+            profile.view.own: true
+            profile.view.others: true
+    profile.view.own:
+        description: Allows you to view your own profiles
+    profile.view.others:
+        description: Allows you to view other peoples profiles
+    profile.remove.*:
+        description: Allows you to remove anyones profile
+        children:
+            profile.remove.own: true
+            profile.remove.others: true
+    profile.remove.own:
+        description: Allows you to remove your own profile
+    profile.remove.others:
+        description: Allows you to remove other peoples profile
